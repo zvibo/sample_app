@@ -5,16 +5,18 @@ describe User do
   before { @user = User.new(name: 'Example User', email:'user@example.com', password: 'foobar', password_confirmation: 'foobar') }
   
   subject { @user }
-  
-  it { should respond_to(:name) }
-  it { should respond_to(:email) }
-  it { should respond_to(:password_digest) }
-  it { should respond_to(:password) }
-  it { should respond_to(:password_confirmation) }
-  it { should respond_to(:authenticate) }
-  
-  it { should be_valid }
-  
+
+  describe "when valid should respond to fields and be_valid" do
+    it { should respond_to(:name) }
+    it { should respond_to(:email) }
+    it { should respond_to(:password_digest) }
+    it { should respond_to(:password) }
+    it { should respond_to(:password_confirmation) }
+    it { should respond_to(:authenticate) }
+
+    it { should be_valid }
+  end
+
   describe "with a password that's too short" do
     before { @user.password = @user.password_confirmation = "a"*5 }
     it { should be_invalid }

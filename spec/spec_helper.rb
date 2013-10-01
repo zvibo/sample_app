@@ -51,6 +51,11 @@ Spork.prefork do
     config.include Capybara::DSL
   end
 
+  if ENV["RUBYMINE_HOME"]
+    $:.unshift(File.expand_path("rb/testing/patch/common", ENV["RUBYMINE_HOME"]))
+    $:.unshift(File.expand_path("rb/testing/patch/bdd", ENV["RUBYMINE_HOME"]))
+  end
+
 
 end
 
